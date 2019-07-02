@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Rotativa.AspNetCore;
+
 
 namespace RotativaDemo
 {
@@ -53,7 +55,15 @@ namespace RotativaDemo
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            RotativaConfiguration.Setup(env);
+
             app.UseMvc();
+
+            app.UseMvc(routes =>
+            {
+                routes
+                    .MapRoute(name: "Home", template: "{controller=Home}/{action=Index}");
+            });
         }
     }
 }

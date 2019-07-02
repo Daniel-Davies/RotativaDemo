@@ -1,0 +1,35 @@
+﻿@model RotativaDemo.Models.LeagueTable
+@{
+    ViewData["Title"] = "LeagueTable";
+    Layout = "_Layout";
+}
+
+<div class="jumbotron p-2 text-center border border-primary">
+    <p class="h4">Date created: <span class="badge badge-primary">@Model.DateCreated.ToString("MM/dd/yyyy")</span></p><br/>
+    <p class="h4">Match Week: <span class="badge badge-primary">@Model.matchWeek</span></p>
+</div>
+<h1>League Table</h1>
+<h4 class="text-muted">Barclays Premier League 2019</h4>
+<table class="table table-bordered">
+    <thead style="background-color: #37003C">
+        <tr class="text-white">
+            <th scope="col">Position</th>
+            <th scope="col">Club</th>
+            <th scope="col">Games Played</th>
+            <th scope="col">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.rows.Count; i++)
+        {
+            <tr>
+                <th scope="row">@Model.rows[i].position</th>
+                <td>@Model.rows[i].club</td>
+                <td>@Model.rows[i].numGames</td>
+                <td>@Model.rows[i].points</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
